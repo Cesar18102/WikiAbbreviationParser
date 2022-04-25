@@ -15,7 +15,9 @@ namespace WikiAbbreviationParser.Services
 
         public async Task<IDictionary<string, int>> GetAbbreviations(string text)
         {
+            var invalidAbbreviations = new HashSet<string>();
             var abbreviationsCounter = new Dictionary<string, int>();
+
             var abbreviations = _abbreviationRegex.Matches(text);
 
             for(int i = 0; i < abbreviations.Count; ++i)
@@ -28,9 +30,18 @@ namespace WikiAbbreviationParser.Services
                     continue;
                 }
 
+                if(invalidAbbreviations.Contains(abbreviation))
+                {
+                    continue;
+                }
+
                 if(await IsAbbreviationValid(abbreviation))
                 {
                     abbreviationsCounter.Add(abbreviation, 1);
+                }
+                else
+                {
+                    invalidAbbreviations.Add(abbreviation);
                 }
             }
 

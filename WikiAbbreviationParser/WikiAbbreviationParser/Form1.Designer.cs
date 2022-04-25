@@ -33,6 +33,8 @@ namespace WikiAbbreviationParser
             this.RootCategoryTextBox = new System.Windows.Forms.TextBox();
             this.RootCategoryTitleLabel = new System.Windows.Forms.Label();
             this.StartButton = new System.Windows.Forms.Button();
+            this.PageAssociationGraphPictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.PageAssociationGraphPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // LogTextBox
@@ -70,11 +72,21 @@ namespace WikiAbbreviationParser
             this.StartButton.UseVisualStyleBackColor = true;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
+            // PageAssociationGraphPictureBox
+            // 
+            this.PageAssociationGraphPictureBox.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PageAssociationGraphPictureBox.Location = new System.Drawing.Point(395, 0);
+            this.PageAssociationGraphPictureBox.Name = "PageAssociationGraphPictureBox";
+            this.PageAssociationGraphPictureBox.Size = new System.Drawing.Size(405, 217);
+            this.PageAssociationGraphPictureBox.TabIndex = 4;
+            this.PageAssociationGraphPictureBox.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.PageAssociationGraphPictureBox);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.RootCategoryTitleLabel);
             this.Controls.Add(this.RootCategoryTextBox);
@@ -82,6 +94,7 @@ namespace WikiAbbreviationParser
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.PageAssociationGraphPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,5 +106,6 @@ namespace WikiAbbreviationParser
         private System.Windows.Forms.TextBox RootCategoryTextBox;
         private System.Windows.Forms.Label RootCategoryTitleLabel;
         private System.Windows.Forms.Button StartButton;
+        private System.Windows.Forms.PictureBox PageAssociationGraphPictureBox;
     }
 }

@@ -1,18 +1,25 @@
-﻿using System;
+﻿using QuickGraph;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace WikiAbbreviationParser.Models
 {
-    public class PageAssociationGraphEdgeWeight : IEdgeWeight
+    public class PageAssociationGraphEdgeWeight : IEdgeWeight, IEdge<Page>
     {
         public IReadOnlyDictionary<string, int> AbbreviationsIntersection { get; private set; }
         public int Weight { get; private set; }
+
+        public Page Source { get; private set; }
+        public Page Target { get; private set; }
 
         public PageAssociationGraphEdgeWeight(Page page, Page pageOther)
         {
             AbbreviationsIntersection = GetAbbreviationsIntersection(page, pageOther);
             Weight = AbbreviationsIntersection.Sum(intersection => intersection.Value);
+
+            Source = page;
+            Target = pageOther;
         }
 
         private Dictionary<string, int> GetAbbreviationsIntersection(Page page, Page pageOther)
@@ -29,6 +36,13 @@ namespace WikiAbbreviationParser.Models
             }
 
             return abbreviationsIntersection;
+        }
+
+        public override string ToString()
+        {
+            var intersections = AbbreviationsIntersection.Select(intersection => $"{intersection.Key}: {intersection.Value}").ToArray();
+            var intersectionsString = string.Join("; ", intersections);
+            return $"{Source.Title} - {Target.Title}; Weight = {Weight}; {intersectionsString}";
         }
     }
 }

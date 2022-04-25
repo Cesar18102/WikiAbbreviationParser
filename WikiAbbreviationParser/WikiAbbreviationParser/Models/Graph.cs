@@ -10,18 +10,30 @@ namespace WikiAbbreviationParser.Models
 
     public class Graph<TVertex, TEdgeWeight> where TEdgeWeight : IEdgeWeight
     {
+        public string Id { get; private set; }
+
         private IDictionary<TVertex, int> _vertexIndex = new Dictionary<TVertex, int>();
+        private List<TEdgeWeight> _edges = new List<TEdgeWeight>();
         private TEdgeWeight[,] _matrixOfAjecency;
+
+        public IReadOnlyCollection<TEdgeWeight> Edges => _edges;
 
         public Graph(IList<TVertex> vertexes, Func<TVertex, TVertex, TEdgeWeight> edgeWeightGenerator)
         {
+            Id = Guid.NewGuid().ToString();
             _matrixOfAjecency = new TEdgeWeight[vertexes.Count, vertexes.Count];
 
             for (int i = 0; i < vertexes.Count; ++i)
             {
                 for (int j = i + 1; j < vertexes.Count; ++j)
                 {
-                    this[vertexes[i], vertexes[j]] = edgeWeightGenerator(vertexes[i], vertexes[j]);
+                    var edge = edgeWeightGenerator(vertexes[i], vertexes[j]);
+
+                    if(edge.Weight != 0)
+                    {
+                        _edges.Add(edge);
+                        this[vertexes[i], vertexes[j]] = edge;
+                    }
                 }
             }
         }

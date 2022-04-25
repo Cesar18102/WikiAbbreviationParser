@@ -48,7 +48,7 @@ namespace WikiAbbreviationParser.Models
 
         public IList<Page> GetAllPages()
         {
-            return GetAllCategories().SelectMany(category => category.GetAllPages()).ToArray();
+            return GetAllCategories().SelectMany(category => category.Pages).ToArray();
         }
 
         public override string ToString()
