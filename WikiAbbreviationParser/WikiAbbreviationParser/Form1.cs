@@ -53,11 +53,8 @@ namespace WikiAbbreviationParser
             await Wiki.RetrieveCategoryContents(rootCategory);
             await rootCategory.RetrieveAbbreviations();
 
-            //draw categories tree
-
-            var allPages = rootCategory.GetAllPages();
             var pageAssociationGraph = new Graph<Page, PageAssociationGraphEdgeWeight>(
-                allPages, 
+                rootCategory.GetAllPages(), 
                 (page, pageOther) => new PageAssociationGraphEdgeWeight(page, pageOther)
             );
 

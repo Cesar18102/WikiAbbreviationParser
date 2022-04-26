@@ -54,8 +54,14 @@ namespace WikiAbbreviationParser.Services
             request.AddParameter("st", abbreviation.Replace("&", "%26"));
 
             var response = await _client.GetAsync(request);
+            var match = _abbreviationCheckRegex.Match(response.Content);
 
-            var definitionsCount = _abbreviationCheckRegex.Match(response.Content).Groups[1].Value;
+            if (match.Groups.Count <= 1)
+            {
+                return false;
+            }
+
+            var definitionsCount = match.Groups[1].Value;
             return Convert.ToInt32(definitionsCount) != 0;
         }
     }

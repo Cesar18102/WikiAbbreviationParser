@@ -38,10 +38,18 @@ namespace WikiAbbreviationParser.Models
             return abbreviationsIntersection;
         }
 
+        public string GetAbbreviationIntersectionString()
+        {
+            var intersections = AbbreviationsIntersection.Select(
+                intersection => $"{intersection.Key}: {intersection.Value}"
+            ).ToArray();
+
+            return string.Join("; ", intersections);
+        }
+
         public override string ToString()
         {
-            var intersections = AbbreviationsIntersection.Select(intersection => $"{intersection.Key}: {intersection.Value}").ToArray();
-            var intersectionsString = string.Join("; ", intersections);
+            var intersectionsString = GetAbbreviationIntersectionString();
             return $"{Source.Title} - {Target.Title}; Weight = {Weight}; {intersectionsString}";
         }
     }

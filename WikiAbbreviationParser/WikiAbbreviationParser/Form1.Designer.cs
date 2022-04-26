@@ -74,10 +74,14 @@ namespace WikiAbbreviationParser
             // 
             // PageAssociationGraphPictureBox
             // 
-            this.PageAssociationGraphPictureBox.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PageAssociationGraphPictureBox.Location = new System.Drawing.Point(395, 0);
+            this.PageAssociationGraphPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PageAssociationGraphPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PageAssociationGraphPictureBox.Location = new System.Drawing.Point(339, 0);
             this.PageAssociationGraphPictureBox.Name = "PageAssociationGraphPictureBox";
-            this.PageAssociationGraphPictureBox.Size = new System.Drawing.Size(405, 217);
+            this.PageAssociationGraphPictureBox.Size = new System.Drawing.Size(461, 217);
+            this.PageAssociationGraphPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.PageAssociationGraphPictureBox.TabIndex = 4;
             this.PageAssociationGraphPictureBox.TabStop = false;
             // 
